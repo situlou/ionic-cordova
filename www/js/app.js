@@ -28,8 +28,7 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers'])
   .state('app', {
     url: '/app',
     abstract: true,
-    templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
+    templateUrl: 'templates/menu.html'
   })
 
   .state('app.QRreader', {
