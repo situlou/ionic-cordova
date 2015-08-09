@@ -22,7 +22,9 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.constant('debug', true)
+
+.config(function($stateProvider, $urlRouterProvider,$provide) {
   $stateProvider
 
   .state('app', {
@@ -31,16 +33,95 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers'])
     templateUrl: 'templates/menu.html'
   })
 
-  .state('app.QRreader', {
-    url: '/BarCode',
+  .state('app.barcode', {
+    url: '/barcode',
     views: {
       'menuContent': {
-        templateUrl: 'templates/BarCode.html',
-        controller: 'BarCodeCtrl'
+        templateUrl: 'templates/barcode.html',
+        controller: 'barcodeCtrl'
+      }
+    }
+  })
+
+  .state('app.socialsharing', {
+    url: '/socialsharing',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/socialsharing.html',
+        controller: 'socialsharingCtrl'
       }
     }
   })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/BarCode');
+  $urlRouterProvider.otherwise('/app/barcode');
+
+
+
+
+  /*****************************************************************************\
+    $Angular and Window handle excepcions
+
+      Source:
+
+        http://forum.ionicframework.com/t/error-tracking-in-angular/8641
+        
+  \*****************************************************************************/
+
+  // catch exceptions in angular
+  $provide.decorator('$exceptionHandler', ['$delegate', function($delegate){
+    return function(exception, cause){
+      $delegate(exception, cause);
+
+      var data = {
+        type: 'angular',
+        url: window.location.hash,
+        localtime: Date.now()
+      };
+      if(cause)               { data.cause    = cause;              }
+      if(exception){
+        if(exception.message) { data.message  = exception.message;  }
+        if(exception.name)    { data.name     = exception.name;     }
+        if(exception.stack)   { data.stack    = exception.stack;    }
+      }
+
+      if(debug){
+        console.log('exception', data);
+        window.alert('Error: '+data.message);
+      } 
+    };
+  }]);
+
+
+  // catch exceptions out of angular
+  window.onerror = function(message, url, line, col, error){
+    var stopPropagation = debug ? false : true;
+    var data = {
+      type: 'javascript',
+      url: window.location.hash,
+      localtime: Date.now()
+    };
+    if(message)       { data.message      = message;      }
+    if(url)           { data.fileName     = url;          }
+    if(line)          { data.lineNumber   = line;         }
+    if(col)           { data.columnNumber = col;          }
+    if(error){
+      if(error.name)  { data.name         = error.name;   }
+      if(error.stack) { data.stack        = error.stack;  }
+    }
+
+    if(debug){
+      console.log('exception', data);
+      window.alert('Error: '+data.message);
+    } 
+    return stopPropagation;
+  };
+
+
 });
+
+
+
+
+
+
