@@ -32,15 +32,15 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers'])
   })
 
   .state('app.QRreader', {
-    url: '/QRreader',
+    url: '/BarCode',
     views: {
       'menuContent': {
-        templateUrl: 'templates/QRreader.html',
-        controller: 'QRreaderCtrl'
+        templateUrl: 'templates/BarCode.html',
+        controller: 'BarCodeCtrl'
       }
     }
   })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/QRreader');
+  $urlRouterProvider.otherwise('/app/BarCode');
 });

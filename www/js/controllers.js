@@ -1,6 +1,6 @@
 angular.module('starter.controllers',['ngCordova'])
 
-.controller('QRreaderCtrl', function($scope, $cordovaBarcodeScanner) {
+.controller('BarCodeCtrl', function($scope, $cordovaBarcodeScanner) {
     $scope.readQR = function(){
       $cordovaBarcodeScanner
       .scan()
