@@ -107,3 +107,6 @@ $cordovaSocialSharing  	//Module
 
 **Note**: This feature can check on an android virtual device or a real device
 
+=======
+repository with example of each cordova plugins of ionic. 
+>>>>>>> 8e6759cf849472dc5ce2f22ef61d18335d16e8e3
