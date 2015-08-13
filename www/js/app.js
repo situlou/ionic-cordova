@@ -53,6 +53,16 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers'])
     }
   })
 
+  .state('app.geolocation', {
+    url: '/geolocation',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/geolocation.html',
+        controller: 'geolocationCtrl'
+      }
+    }
+  })
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/barcode');
 

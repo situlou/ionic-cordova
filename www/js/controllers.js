@@ -64,4 +64,28 @@ angular.module('starter.controllers',['ngCordova'])
     }
 })
 
+/****************************************************************\
+  $GeolocationSource Implementations
+\****************************************************************/
+.controller('geolocationCtrl', function($scope,$cordovaGeolocation) {
+    $scope.getLocation = function(){
+
+        var posOptions = {timeout: 10000, enableHighAccuracy: false};
+        $cordovaGeolocation
+        .getCurrentPosition(posOptions)
+        .then(
+            function (position)  // Success! Barcode data is here
+            { 
+                var lat  = position.coords.latitude
+                var long = position.coords.longitude
+                alert("position lat: " +lat+ " long: "+ long );
+            }, 
+            function(err)  // An error occurred
+            {
+                 console.log(error);
+                 alert(error);
+            }
+        );
+    }
+})
 
