@@ -2,9 +2,9 @@
 
 ionic-cordovar is a repository with simple examples of each of the cordova plugins on the ionic framework. 
 
-
-
-
+<br />
+<br />
+<br />
 
 
 ### Version
@@ -15,9 +15,9 @@ ionic-cordovar is a repository with simple examples of each of the cordova plugi
 * [ngCordova] - ~0.1.18-alpha
 * [Cordova] - ~5.0.0
 
-
-
-
+<br />
+<br />
+<br />
 
 
 ### Installation
@@ -39,9 +39,9 @@ Look for the plugin that you want to  [implement](http://ngcordova.com/docs/plug
 $ cordova plugin add https://github.com/wildabeast/BarcodeScanner.git
 ```
 
-
-
-
+<br />
+<br />
+<br />
 
 
 ### Plugins
@@ -70,7 +70,8 @@ $cordovaBarcodeScanner  	//Module
 ```
 
 
-
+<br />
+<br />
 
 
 
@@ -108,10 +109,8 @@ $cordovaSocialSharing  	//Module
 **Note**: This feature can check on an android virtual device or a real device
 
 
-
-
-
-
+<br />
+<br />
 
 
 #### Geolocation	
@@ -132,9 +131,43 @@ AngularDependecy:
  var posOptions = {timeout: 10000, enableHighAccuracy: false}; //enableHighAccuracy: Provides a hint that the application needs the best 																 possible results
 
 $cordovaGeolocation  						//Module		
-.getCurrentPosition(posOptions)				//Start Scaning
+.getCurrentPosition(posOptions)				//Set the options and start getting current location
 .then( 					    				//Promise (success event, error event)
     function(position){ position.coords.latitude, position.coords.longitude} , 
+    function(error){} 
+)
+```
+
+<br />
+<br />
+
+
+#### Toast	
+
+Install:
+
+```sh
+$ cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
+```
+
+AngularDependecy:
+
+**Module Name**: $cordovaToast
+
+**Module references**:
+
+```sh
+ $cordovaToast  								//Module		
+.show(message, duration, position)...			//Start Scaning
+.showShortTop(message)...
+.showShortCenter(message)...
+.showShortBottom(message)...
+.showLongTop(message)...
+.showLongCenter(message)...
+.showLongBottom(message)...
+
+.then( 					    				//Promise (success event, error event)
+    function(success){ } , 
     function(error){} 
 )
 ```

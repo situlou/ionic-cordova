@@ -63,6 +63,16 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers'])
     }
   })
 
+  .state('app.toast', {
+    url: '/toast',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/toast.html',
+        controller: 'toastCtrl'
+      }
+    }
+  })
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/barcode');
 

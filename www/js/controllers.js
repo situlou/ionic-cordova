@@ -89,3 +89,126 @@ angular.module('starter.controllers',['ngCordova'])
     }
 })
 
+/****************************************************************\
+  $Toast Implementations
+\****************************************************************/
+.controller('toastCtrl', function($scope,$cordovaToast) {
+    $scope.show = function(){
+
+       $cordovaToast
+       .show('Here is a custom toast with a long duration and center position', 'long', 'center')
+       .then(
+          function(success) 
+          {
+          // success
+          }, 
+          function (error) 
+          {
+          // error
+          }
+        );
+
+    }
+
+    $scope.showShortTop = function(){
+
+       $cordovaToast
+       .showShortTop('Here is a toast with a short duration and top position')
+       .then(
+          function(success) 
+          {
+          // success
+          }, 
+          function (error) 
+          {
+          // error
+          }
+        );
+
+    }
+
+    $scope.showShortCenter = function(){
+
+       $cordovaToast
+       .showShortCenter('Here is a toast with a short duration and center position')
+       .then(
+          function(success) 
+          {
+          // success
+          }, 
+          function (error) 
+          {
+          // error
+          }
+        );
+
+    }
+
+    $scope.showShortBottom = function(){
+
+       $cordovaToast
+       .showShortBottom('Here is a toast with a short duration and bottom position')
+       .then(
+          function(success) 
+          {
+          // success
+          }, 
+          function (error) 
+          {
+          // error
+          }
+        );
+
+    }
+
+    $scope.showLongTop = function(){
+
+       $cordovaToast
+       .showLongTop('Here is a toast with a long duration and top position')
+       .then(
+          function(success) 
+          {
+          // success
+          }, 
+          function (error) 
+          {
+          // error
+          }
+        );
+
+    }
+
+    $scope.showLongCenter = function(){
+
+       $cordovaToast
+       .showLongCenter('Here is a toast with a long duration and center position')
+       .then(
+          function(success) 
+          {
+          // success
+          }, 
+          function (error) 
+          {
+          // error
+          }
+        );
+
+    }
+
+    $scope.showLongBottom = function(){
+
+       $cordovaToast
+       .showLongBottom('Here is a toast with a long duration and bottom position')
+       .then(
+          function(success) 
+          {
+          // success
+          }, 
+          function (error) 
+          {
+          // error
+          }
+        );
+
+    }
+})
