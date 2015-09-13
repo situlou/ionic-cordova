@@ -158,7 +158,7 @@ AngularDependecy:
 
 ```sh
  $cordovaToast  								//Module		
-.show(message, duration, position)...			//Start Scaning
+.show(message, duration, position)...			//Method for showing the toast
 .showShortTop(message)...
 .showShortCenter(message)...
 .showShortBottom(message)...
@@ -166,8 +166,37 @@ AngularDependecy:
 .showLongCenter(message)...
 .showLongBottom(message)...
 
-.then( 					    				//Promise (success event, error event)
+.then( 					    					//Promise (success event, error event)
     function(success){ } , 
     function(error){} 
 )
+```
+
+<br />
+<br />
+
+
+#### SQlite	
+
+Install:
+
+```sh
+$ cordova plugin add https://github.com/litehelpers/Cordova-sqlite-storage.git
+```
+
+AngularDependecy:
+
+**Module Name**: $cordovaSQLite
+
+**Module references**:
+
+```sh
+
+var db = $cordovaSQLite.openDB("databasename");	//Create Or Open a Database
+
+$cordovaSQLite
+.execute(db, query, parametersArray); 			//Execute a query script
+.deleteDB("databasename"); 						//Delete Database
+
+
 ```

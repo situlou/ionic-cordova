@@ -1,4 +1,7 @@
+var db;
+
 angular.module('starter.controllers',['ngCordova'])
+
 
 /****************************************************************\
   $BarCode Implementations
@@ -210,5 +213,68 @@ angular.module('starter.controllers',['ngCordova'])
           }
         );
 
+    }
+})
+
+/****************************************************************\
+  $SQlite Implementations
+\****************************************************************/
+.run(function($ionicPlatform, $cordovaSQLite) {
+        $ionicPlatform.ready(function() {
+            db = $cordovaSQLite.openDB("my.db");
+            //$cordovaSQLite.execute(db, "DROP TABLE people");
+            $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key AUTOINCREMENT, firstname text, lastname text)");
+        });
+})
+.controller('sqliteCtrl', function($scope,$cordovaSQLite) {
+    $scope.person = {
+      firstname: "",
+      lastname: ""
+    } 
+    $scope.people = [];
+
+    $scope.insert = function() {
+
+        var firstname = $scope.person.firstname;
+        var lastname = $scope.person.lastname;
+
+        var query = "INSERT INTO people (firstname, lastname) VALUES (?,?)";
+        $cordovaSQLite.execute(db, query, [firstname, lastname]).then(function(res) {
+           alert("INSERT ID -> " + res.insertId);
+        }, function (err) {
+           alert(err);
+        });
+    }
+ 
+    $scope.select = function() {
+        var query = "SELECT id, firstname, lastname FROM people";
+        $cordovaSQLite.execute(db, query, []).then(function(res) {
+            $scope.people = [];
+            
+            if(res.rows.length > 0) {
+                for (var i = 0; i < res.rows.length ; i++) {
+                   $scope.people.push(
+                            { 
+                              id: res.rows.item(i).id , 
+                              firstname:res.rows.item(i).firstname ,
+                              lastname :res.rows.item(i).lastname  
+                            }
+                        );
+                };
+            } else {
+                alert("No results found");
+            }
+        }, function (err) {
+           alert(err);
+        });
+    }
+
+    $scope.delete = function(id) {
+        var query = "DELETE FROM people WHERE id = ?";
+        $cordovaSQLite.execute(db, query, [id]).then(function(res) {
+              $scope.select();
+        }, function (err) {
+           alert(err);
+        });
     }
 })

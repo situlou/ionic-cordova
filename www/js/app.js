@@ -73,6 +73,16 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers'])
     }
   })
 
+  .state('app.sqlite', {
+    url: '/sqlite',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/sqlite.html',
+        controller: 'sqliteCtrl'
+      }
+    }
+  })
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/barcode');
 

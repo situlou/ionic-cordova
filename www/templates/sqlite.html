@@ -1,0 +1,18 @@
+<ion-view view-title="SQlite">
+  <ion-content class="has-header has-tabs" padding="2">
+   	<div>
+
+   		<input type="text" placeholder="first name" ng-model="person.firstname">
+   		<input type="text" placeholder="last name" ng-model="person.lastname">
+
+   		<button class="button button-block button-positive" ng-click="insert()">Insert</button>
+   		<button class="button button-block button-positive" ng-click="select()">Select</button>
+
+   		 <ul class="list" ng-repeat="person in people">
+            <li class="item item-icon-left">
+            		 <i class="icon ion-close-circled" ng-click="delete(person.id)"></i> {{person.id}} - {{person.firstname}} {{person.lastname}} 
+            </li>                       
+        </ul>
+   	</div>
+  </ion-content>
+</ion-view>
